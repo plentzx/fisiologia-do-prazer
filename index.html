@@ -115,6 +115,118 @@
     }
 
     /* =========================================================
+       BARRA DE URGÊNCIA + CONTADOR
+    ========================================================= */
+    .urgency-bar {
+      background: #7B1113;
+      background: linear-gradient(135deg, #7B1113 0%, #9B1B1E 100%);
+      color: #fff;
+      text-align: center;
+      padding: 18px 24px 20px;
+      position: relative;
+      z-index: 100;
+    }
+
+    .urgency-bar .urg-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #FFD0D0;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .urgency-bar .urg-text {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .urgency-bar .urg-text strong { color: #FFD700; }
+
+    .countdown-display {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      padding: 10px 24px;
+      margin-bottom: 10px;
+    }
+
+    .countdown-digit {
+      background: #1a0000;
+      color: #FFD700;
+      font-family: 'Courier New', monospace;
+      font-size: 2.4rem;
+      font-weight: 900;
+      width: 64px;
+      text-align: center;
+      border-radius: 6px;
+      padding: 4px 0;
+      letter-spacing: 2px;
+      line-height: 1.2;
+    }
+
+    .countdown-sep {
+      color: #FFD700;
+      font-size: 2rem;
+      font-weight: 900;
+      font-family: monospace;
+      line-height: 1;
+    }
+
+    .countdown-label {
+      font-family: Arial, sans-serif;
+      font-size: 0.65rem;
+      color: #FFD0D0;
+      letter-spacing: 1px;
+      text-align: center;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .urgency-bar .urg-sub {
+      font-family: Arial, sans-serif;
+      font-size: 0.82rem;
+      color: #FFB3B3;
+      margin-top: 8px;
+    }
+
+    /* Mini urgência perto dos botões */
+    .btn-urgency-wrap {
+      display: inline-block;
+      text-align: center;
+    }
+
+    .btn-urgency-note {
+      display: block;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      color: #B71C1C;
+      font-weight: 700;
+      margin-top: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-urgency-note .mini-timer {
+      font-family: 'Courier New', monospace;
+      font-weight: 900;
+      color: #B71C1C;
+    }
+
+    /* versão branca (para fundos escuros) */
+    .btn-urgency-note.light {
+      color: #FFB3B3;
+    }
+    .btn-urgency-note.light .mini-timer { color: #FFD700; }
+
+    /* =========================================================
        TOPO INFORMATIVO
     ========================================================= */
     .topbar {
@@ -857,6 +969,28 @@
 <body>
 
 <!-- =========================================================
+     BARRA DE URGÊNCIA COM CONTADOR
+========================================================= -->
+<div class="urgency-bar">
+  <span class="urg-label">⚠️ Oferta por tempo limitado</span>
+  <p class="urg-text">
+    O preço promocional de <strong>R$17</strong> encerra em:
+  </p>
+  <div class="countdown-display">
+    <div>
+      <span class="countdown-digit" id="timer-min">05</span>
+      <span class="countdown-label">min</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div>
+      <span class="countdown-digit" id="timer-sec">00</span>
+      <span class="countdown-label">seg</span>
+    </div>
+  </div>
+  <p class="urg-sub">Após esse tempo, o valor retorna para R$97 — garanta agora</p>
+</div>
+
+<!-- =========================================================
      HERO
 ========================================================= -->
 <section class="hero">
@@ -900,13 +1034,17 @@
     </div>
 
     <!-- Botão CTA -->
-    <!-- ⚠️ SUBSTITUIR "#comprar" PELO SEU LINK DE CHECKOUT (Hotmart, Kiwify, etc.) -->
-    <a href="#comprar" class="btn-cta">
-      ✅ Quero Meu Guia Agora — R$17
-    </a>
-    <span class="cta-note" style="color:#6a85a8; display:block; margin-top:10px;">
-      🔒 Compra segura · Acesso imediato
-    </span>
+    <div class="btn-urgency-wrap">
+      <a href="https://pay.kiwify.com.br/gDYykBM" target="_blank" rel="noopener" class="btn-cta">
+        ✅ Quero Meu Guia Agora — R$17
+      </a>
+      <span class="btn-urgency-note light">
+        ⏰ Oferta expira em <span class="mini-timer">05:00</span> — depois volta para R$97
+      </span>
+      <span class="cta-note" style="color:#6a85a8; display:block; margin-top:6px;">
+        🔒 Compra segura · Acesso imediato
+      </span>
+    </div>
 
     <!-- Badges -->
     <div class="badges">
@@ -1058,9 +1196,14 @@
     </div>
 
     <div class="text-center" style="margin-top:40px;">
-      <a href="#comprar" class="btn-cta btn-cta-small">
-        Quero Acessar os 7 Capítulos — R$17
-      </a>
+      <div class="btn-urgency-wrap">
+        <a href="https://pay.kiwify.com.br/gDYykBM" target="_blank" rel="noopener" class="btn-cta btn-cta-small">
+          Quero Acessar os 7 Capítulos — R$17
+        </a>
+        <span class="btn-urgency-note">
+          ⏰ Preço promocional expira em <span class="mini-timer">05:00</span>
+        </span>
+      </div>
     </div>
   </div>
 </section>
@@ -1273,11 +1416,16 @@
       <div class="valor-seu-preco">
         <span class="label">Seu preço hoje</span>
         <span class="preco">R$17</span>
-        <a href="#comprar" class="btn-cta">
-          ✅ Sim, quero acesso por R$17
-        </a>
-        <div style="margin-top:14px; font-family:Arial,sans-serif; font-size:0.8rem; color:#5a7095;">
-          🔒 Pagamento seguro · Acesso imediato
+        <div class="btn-urgency-wrap">
+          <a href="https://pay.kiwify.com.br/gDYykBM" target="_blank" rel="noopener" class="btn-cta">
+            ✅ Sim, quero acesso por R$17
+          </a>
+          <span class="btn-urgency-note light">
+            ⏰ Oferta expira em <span class="mini-timer">05:00</span>
+          </span>
+          <div style="margin-top:10px; font-family:Arial,sans-serif; font-size:0.8rem; color:#5a7095;">
+            🔒 Pagamento seguro · Acesso imediato
+          </div>
         </div>
       </div>
     </div>
@@ -1388,12 +1536,17 @@
       e a aplicar um protocolo com base científica que pode mudar o próximo capítulo da sua vida.
     </p>
 
-    <a href="#comprar" class="btn-cta">
-      ✅ Quero Meu Guia — R$17 · Acesso Imediato
-    </a>
-    <span class="cta-note">
-      🔒 Compra segura · Garantia de 7 dias
-    </span>
+    <div class="btn-urgency-wrap">
+      <a href="https://pay.kiwify.com.br/gDYykBM" target="_blank" rel="noopener" class="btn-cta">
+        ✅ Quero Meu Guia — R$17 · Acesso Imediato
+      </a>
+      <span class="btn-urgency-note light">
+        ⏰ Oferta expira em <span class="mini-timer">05:00</span> — depois volta para R$97
+      </span>
+      <span class="cta-note">
+        🔒 Compra segura · Garantia de 7 dias
+      </span>
+    </div>
 
     <div class="ps-box">
       <strong>P.S.</strong> — Cada dia que passa sem entender o que está acontecendo
@@ -1422,8 +1575,85 @@
 
 <!-- BARRA STICKY MOBILE -->
 <div class="sticky-bar">
-  <a href="#comprar">✅ Quero meu guia — R$17</a>
+  <a href="https://pay.kiwify.com.br/gDYykBM" target="_blank" rel="noopener">✅ Quero meu guia — R$17</a>
 </div>
+
+
+<!-- =========================================================
+     CONTADOR REGRESSIVO — 5 MINUTOS
+========================================================= -->
+<script>
+(function () {
+  var DURATION = 5 * 60; // 5 minutos em segundos
+
+  function getEndTime() {
+    var stored = sessionStorage.getItem('oferta_end');
+    if (!stored) {
+      var end = Date.now() + DURATION * 1000;
+      sessionStorage.setItem('oferta_end', end);
+      return end;
+    }
+    return parseInt(stored, 10);
+  }
+
+  function getSecondsLeft() {
+    var left = Math.floor((getEndTime() - Date.now()) / 1000);
+    return left > 0 ? left : 0;
+  }
+
+  function pad(n) {
+    return n < 10 ? '0' + n : '' + n;
+  }
+
+  function tick() {
+    var left = getSecondsLeft();
+
+    // Se zerou, reinicia o timer para manter urgência permanente
+    if (left === 0) {
+      sessionStorage.removeItem('oferta_end');
+      left = DURATION;
+    }
+
+    var m = Math.floor(left / 60);
+    var s = left % 60;
+    var formatted = pad(m) + ':' + pad(s);
+
+    // Atualiza o painel grande
+    var elMin = document.getElementById('timer-min');
+    var elSec = document.getElementById('timer-sec');
+    if (elMin) elMin.textContent = pad(m);
+    if (elSec) elSec.textContent = pad(s);
+
+    // Atualiza todos os mini-timers perto dos botões
+    var minis = document.querySelectorAll('.mini-timer');
+    minis.forEach(function (el) { el.textContent = formatted; });
+
+    // Pulsa o painel quando restam menos de 60s
+    var bar = document.querySelector('.urgency-bar');
+    if (bar) {
+      if (left <= 60) {
+        bar.style.animation = 'pulse-red 1s infinite';
+      } else {
+        bar.style.animation = '';
+      }
+    }
+
+    setTimeout(tick, 1000);
+  }
+
+  // Adiciona animação de pulso ao CSS dinamicamente
+  var style = document.createElement('style');
+  style.textContent = '@keyframes pulse-red { 0%,100%{background:#7B1113} 50%{background:#C0191D} }';
+  document.head.appendChild(style);
+
+  // Inicia ao carregar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tick);
+  } else {
+    tick();
+  }
+})();
+</script>
 
 </body>
 </html>
