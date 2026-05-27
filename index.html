@@ -227,6 +227,134 @@
     .btn-urgency-note.light .mini-timer { color: #FFD700; }
 
     /* =========================================================
+       VSL — SEÇÃO DEDICADA
+    ========================================================= */
+    .sec-vsl {
+      background: #04080F;
+      padding: 56px 0 48px;
+      text-align: center;
+    }
+
+    /* Container alargado para o player do VSL */
+    .sec-vsl .container {
+      max-width: 1400px;
+    }
+
+    /* Badge de atenção acima do vídeo */
+    .vsl-attention-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #B8860B, #D4A520);
+      color: #0a0f1a;
+      font-family: Arial, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 9px 22px;
+      border-radius: 4px;
+      margin-bottom: 22px;
+      animation: vsl-badge-pulse 2.5s infinite;
+    }
+
+    @keyframes vsl-badge-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,165,32,0.6); }
+      50%       { box-shadow: 0 0 0 10px rgba(212,165,32,0); }
+    }
+
+    /* Headline de urgência */
+    .vsl-headline {
+      font-size: 1.7rem;
+      line-height: 1.3;
+      color: #fff;
+      max-width: 720px;
+      margin: 0 auto 10px;
+    }
+
+    .vsl-headline em { font-style: normal; color: var(--gold-light); }
+
+    .vsl-sub {
+      font-family: Arial, sans-serif;
+      font-size: 0.92rem;
+      color: #6a85a8;
+      max-width: 540px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    .vsl-sub strong { color: #a8c0e0; }
+
+    /* Wrapper do vídeo — grande e imponente */
+    .vsl-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 3px rgba(184,134,11,0.35),
+        0 0 60px rgba(184,134,11,0.12),
+        0 20px 60px rgba(0,0,0,0.85);
+      background: #04080F;
+      aspect-ratio: 16 / 9;
+    }
+
+    .vsl-video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    /* Placeholder enquanto o arquivo não estiver na pasta */
+    .vsl-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #060D1A 0%, #1B2B4B 60%, #243A6A 100%);
+      border-radius: 12px;
+    }
+
+    .vsl-play-btn {
+      width: 80px;
+      height: 80px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--navy);
+      margin-bottom: 18px;
+      box-shadow: 0 4px 30px rgba(212,165,32,0.5);
+    }
+
+    .vsl-placeholder p {
+      font-family: Arial, sans-serif;
+      font-size: 0.9rem;
+      color: #a8c0e0;
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .vsl-placeholder p strong { color: var(--gold-light); }
+
+    /* Nudge abaixo do vídeo */
+    .vsl-post-nudge {
+      margin-top: 20px;
+      font-family: Arial, sans-serif;
+      font-size: 0.88rem;
+      color: #4a6080;
+      font-style: italic;
+    }
+
+    .vsl-post-nudge strong { color: #a8c0e0; font-style: normal; }
+
+    /* =========================================================
        TOPO INFORMATIVO
     ========================================================= */
     .topbar {
@@ -948,6 +1076,9 @@
     @media (max-width: 640px) {
       .hero h1          { font-size: 1.75rem; }
       .section-title    { font-size: 1.55rem; }
+      .vsl-headline     { font-size: 1.3rem; }
+      .vsl-wrapper      { border-radius: 8px; }
+      .sec-vsl          { padding: 40px 0 32px; }
       .depo-grid        { grid-template-columns: 1fr; }
       .author-wrapper   { flex-direction: column; align-items: center; text-align: center; }
       .sec-capitulos,
@@ -989,6 +1120,52 @@
   </div>
   <p class="urg-sub">Após esse tempo, o valor retorna para R$97 — garanta agora</p>
 </div>
+
+<!-- =========================================================
+     SEÇÃO: VSL — PRIMEIRO CONTATO COM A PÁGINA
+========================================================= -->
+<section class="sec-vsl">
+  <div class="container">
+
+    <!-- Badge pulsante -->
+    <div>
+      <span class="vsl-attention-badge">⚠️ Assista este vídeo agora</span>
+    </div>
+
+    <!-- Headline espelhando o problema central do ebook -->
+    <h2 class="vsl-headline">
+      Você ainda acha que o que está sentindo
+      <em>é só coisa da idade?</em>
+    </h2>
+
+    <!-- Sub conectando com a solução do ebook -->
+    <p class="vsl-sub">
+      A ciência já provou que não é inevitável — e existe uma razão fisiológica para tudo.<br/>
+      <strong>Julia Sanches explica o que está acontecendo no seu corpo, e o que você pode fazer agora.</strong>
+    </p>
+
+    <!-- Vídeo VSL — arquivo: Fisiologia-vsl.mp4 (mesma pasta do index.html) -->
+    <div class="vsl-wrapper">
+      <video class="vsl-video" controls autoplay muted playsinline preload="auto"
+             onloadeddata="document.getElementById('fis-vsl-ph').style.display='none';">
+        <source src="Fisiologia-vsl.mp4" type="video/mp4">
+      </video>
+      <div class="vsl-placeholder" id="fis-vsl-ph">
+        <div class="vsl-play-btn">▶</div>
+        <p>
+          <strong>Fisiologia-vsl.mp4</strong><br/>
+          Adicione o arquivo nesta pasta para ativar
+        </p>
+      </div>
+    </div>
+
+    <!-- Nudge abaixo do vídeo -->
+    <p class="vsl-post-nudge">
+      👆 <strong>Assista até o final</strong> — Julia explica exatamente por onde começar o protocolo ainda hoje
+    </p>
+
+  </div>
+</section>
 
 <!-- =========================================================
      HERO
